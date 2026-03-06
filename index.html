@@ -68,7 +68,7 @@
     function loadModel() {
       const loader = new FBXLoader();
       loader.load(
-        // Relativer Pfad innerhalb derselben GitHub-Pages-Site:
+        // FBX relativ zur index.html, Datei liegt in /models
         'models/fullportal_textured.fbx',
         (object) => {
           object.traverse((child) => {
@@ -78,6 +78,7 @@
             }
           });
 
+          // ggf. anpassen, falls zu klein/groß
           object.scale.set(0.01, 0.01, 0.01);
           scene.add(object);
         },

@@ -16,8 +16,13 @@
       width: 100%;
       height: 100%;
     }
-    canvas { display: block; }
+    canvas {
+      display: block;
+    }
   </style>
+</head>
+<body>
+  <div id="portal-viewer"></div>
 
   <script type="module">
     import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
@@ -68,7 +73,7 @@
     function loadModel() {
       const loader = new FBXLoader();
       loader.load(
-        // FBX relativ zur index.html, Datei liegt in /models
+        // FBX relativ zur index.html – Datei liegt in /models
         'models/fullportal_textured.fbx',
         (object) => {
           object.traverse((child) => {
@@ -78,8 +83,7 @@
             }
           });
 
-          // ggf. anpassen, falls zu klein/groß
-          object.scale.set(0.01, 0.01, 0.01);
+          object.scale.set(0.01, 0.01, 0.01); // ggf. anpassen
           scene.add(object);
         },
         (xhr) => {
@@ -105,8 +109,5 @@
       renderer.render(scene, camera);
     }
   </script>
-</head>
-<body>
-  <div id="portal-viewer"></div>
 </body>
 </html>

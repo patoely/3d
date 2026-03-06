@@ -68,7 +68,8 @@
     function loadModel() {
       const loader = new FBXLoader();
       loader.load(
-        'https://github.com/patoely/3d/raw/main/fullportal_textured.fbx',
+        // Relativer Pfad innerhalb derselben GitHub-Pages-Site:
+        'models/fullportal_textured.fbx',
         (object) => {
           object.traverse((child) => {
             if (child.isMesh) {
@@ -80,7 +81,9 @@
           object.scale.set(0.01, 0.01, 0.01);
           scene.add(object);
         },
-        undefined,
+        (xhr) => {
+          console.log(`FBX loading: ${ (xhr.loaded / (xhr.total || 1)) * 100 }%`);
+        },
         (error) => {
           console.error('FBX load error:', error);
         }
